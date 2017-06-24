@@ -83,13 +83,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   db = database;
   console.log("Database connection ready");
 
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
-});
-
 // Define routes.
 app.get('/',
   function(req, res) {
@@ -192,5 +185,12 @@ app.delete("/contacts/:id", function(req, res) {
     } else {
       res.status(204).end();
     }
+  });
+});
+
+  // Initialize the app.
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
   });
 });
