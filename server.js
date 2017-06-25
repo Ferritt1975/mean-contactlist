@@ -13,9 +13,9 @@ var Strategy = require('passport-facebook').Strategy;
 passport.use(new Strategy({
 //    clientID: process.env.CLIENT_ID,
 //    clientSecret: process.env.CLIENT_SECRET,
-    clientID: '485370725135067',
-    clientSecret: '75eb9077d8be751c5e6e71fe4d7bac83',
-    callbackURL: 'http://localhost:3000/login/facebook/return'
+    clientID: '145826452655768',
+    clientSecret: '388560ee4c8d52694ad674617a97e6dd',
+    callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/facebook/return'
   },
   function(accessToken, refreshToken, profile, cb) {
     // In this example, the user's Facebook profile is supplied as the user
