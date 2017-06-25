@@ -130,21 +130,6 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get('/contacts',
-  require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
-    } else {
-      res.status(200).json(docs);  
-    }
-    console.log(json.toString());
-  });
-});
-
-
-/*
 app.get("/contacts", function(req, res) {
   db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
@@ -154,18 +139,6 @@ app.get("/contacts", function(req, res) {
     }
   });
 });
-*/
-
-/*
-app.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('profile', { user: req.user });
-  });
-
-  */
-
-
 
 app.post("/contacts", function(req, res) {
   var newContact = req.body;
