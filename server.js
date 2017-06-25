@@ -140,6 +140,7 @@ app.get('/contacts',
       res.status(200).json(docs);  
     }
   });
+});
 
 
 /* app.get("/contacts", function(req, res) {
