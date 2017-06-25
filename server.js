@@ -102,6 +102,17 @@ app.get('/list',
     res.render('list', { user: req.user });
   });
 
+app.get('/contact',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    res.render('contact', { user: req.user });
+  });
+
+app.get('/contact-form',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    res.render('contact-form', { user: req.user });
+  });
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
