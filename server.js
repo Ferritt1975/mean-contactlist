@@ -90,6 +90,12 @@ app.get('/login/facebook/return',
     res.redirect('/');
   });
 
+app.get('/logout', function (req, res) {
+    req.session.destroy(function () {
+        res.redirect('/');
+    });
+});
+
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
