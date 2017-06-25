@@ -96,6 +96,13 @@ app.get('/profile',
     res.render('profile', { user: req.user });
   });
 
+app.get('/list',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    res.render('list', { user: req.user });
+  });
+
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
@@ -130,7 +137,9 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/contacts", function(req, res) {
+app.get("/contacts",
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res) {
   db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
