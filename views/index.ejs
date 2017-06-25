@@ -10,10 +10,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<% if (!user) { %>
-      	<li>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</li>
+      	<li><%= user.username %></li>
 		<li><a href="/login">Logout</a></li>
       	<% } else { %>
-		<li><a href="/login">Login</a></li>
+		<li><a href="/login/facebook">Login</a></li>
 		<% } %>
       </ul>
     </div>
