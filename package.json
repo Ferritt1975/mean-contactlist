@@ -16,12 +16,12 @@
     "Express",
     "Angular"
   ],
-  "author": "Chris Chang",
+  "author": "Erik Cass",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chrisckchang/mean-contactlist/issues"
+    "url": "https://github.com/Ferritt1975/mean-contactlist/issues"
   },
-  "homepage": "https://github.com/chrisckchang/mean-contactlist",
+  "homepage": "https://github.com/Ferritt1975/mean-contactlist",
   "dependencies": {
     "body-parser": "^1.13.3",
     "connect-ensure-login": "^0.1.1",
