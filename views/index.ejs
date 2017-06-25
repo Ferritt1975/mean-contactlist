@@ -1,5 +1,25 @@
-<% if (!user) { %>
-	<p>Welcome! Please <a href="/login">log in</a>.</p>
-<% } else { %>
-	<p>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</p>
-<% } %>
+<%- include('header') -%>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <div class="navbar-brand" href="#/">mLab Contact List - Modified</div>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/">Home</a></li>
+      </ul>
+      <ul> class="nav navbar-nav navbar-right">
+      	<% if (!user) { %>
+      	<li>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</li>
+		<li><a href="/login">Login</a></li>
+      	<% } else { %>
+		<li><a href="/login">Login</a></li>
+		<% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Dynamically render templates -->
+<div class="container" ng-view>
+</div>
+<%- include('footer') -%>
