@@ -12,11 +12,11 @@ angular.module("contactsApp", ['ngRoute'])
             })
             .when("/new/contact", {
                 controller: "NewContactController",
-                templateUrl: "contact-form.html"
+                templateUrl: "contact-form"
             })
             .when("/contact/:contactId", {
                 controller: "EditContactController",
-                templateUrl: "contact.html"
+                templateUrl: "contact"
             })
             .otherwise({
                 redirectTo: "/"
@@ -96,7 +96,7 @@ angular.module("contactsApp", ['ngRoute'])
 
         $scope.toggleEdit = function() {
             $scope.editMode = true;
-            $scope.contactFormUrl = "contact-form.html";
+            $scope.contactFormUrl = "contact-form";
         }
 
         $scope.back = function() {
