@@ -2,7 +2,7 @@ angular.module("contactsApp", ['ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "list.html",
+                templateUrl: "list",
                 controller: "ListController",
                 resolve: {
                     contacts: function(Contacts) {
