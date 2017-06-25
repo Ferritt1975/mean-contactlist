@@ -50,8 +50,6 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 var app = express();
-app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
 
 // Configure view engine to render EJS templates.
 app.set('views', __dirname + '/views');
@@ -68,6 +66,9 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
