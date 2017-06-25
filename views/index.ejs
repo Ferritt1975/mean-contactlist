@@ -9,12 +9,12 @@
         <li class="active"><a href="#/">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<% if (!user) { %>
+      <% if (!user) { %>
       	<li><%= user.username %></li>
-		<li><a href="/login">Logout</a></li>
-      	<% } else { %>
+		<li><a href="/logout">Logout</a></li>
+      <% } else { %>
 		<li><a href="/login/facebook">Login</a></li>
-		<% } %>
+	  <% } %>
       </ul>
     </div>
   </div>
