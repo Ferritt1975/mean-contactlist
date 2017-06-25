@@ -160,7 +160,9 @@ app.get("/contacts",
   });
 });
 
-app.post("/contacts", function(req, res) {
+app.post("/contacts",
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res) {
   var newContact = req.body;
   newContact.createDate = new Date();
 
@@ -183,7 +185,9 @@ app.post("/contacts", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/contacts/:id", function(req, res) {
+app.get("/contacts/:id",
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res) {
   db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
