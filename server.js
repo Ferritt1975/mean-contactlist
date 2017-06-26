@@ -30,7 +30,7 @@ passport.use(new Strategy({
     return cb(null, profile);
   }));
 
-2q2wpassport.use(new TwitterStrategy({
+passport.use(new TwitterStrategy({
     consumerKey: 'Ft0IzZcoIoxWTwXpVRGgHS3L3',
     consumerSecret: 'en3dxsyE6zfg6ibd7CaKpeW5rXMwH01cqvvciWh7IH5CU9RGoa',
     callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
