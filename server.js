@@ -23,9 +23,10 @@ passport.use(new TwitterStrategy({
     callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
   },
   function(token, tokenSecret, profile, cb) {
-    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
+    return cb(null, profile);
+    //User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+    //  return cb(err, user);
+    //});
   }
 ));
 
