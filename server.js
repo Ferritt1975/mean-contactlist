@@ -1,7 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var twitterStrategy = require('passport-twitter').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
@@ -23,10 +23,9 @@ passport.use(new TwitterStrategy({
     callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
   },
   function(token, tokenSecret, profile, cb) {
-    return cb(null, profile);
-  //  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-  //    return cb(err, user);
-  //  });
+    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
   }
 ));
 
