@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
@@ -14,7 +15,7 @@ var CONTACTS_COLLECTION = "contacts";
 // behalf, along with the user's profile.  The function must invoke `cb`
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
-passport.use(new Strategy({
+passport.use(new FacebookStrategy({
 //    clientID: process.env.CLIENT_ID,
 //    clientSecret: process.env.CLIENT_SECRET,
     clientID: '145826452655768',
