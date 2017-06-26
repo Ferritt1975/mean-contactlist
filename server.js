@@ -30,6 +30,17 @@ passport.use(new Strategy({
     return cb(null, profile);
   }));
 
+2q2wpassport.use(new TwitterStrategy({
+    consumerKey: 'Ft0IzZcoIoxWTwXpVRGgHS3L3',
+    consumerSecret: 'en3dxsyE6zfg6ibd7CaKpeW5rXMwH01cqvvciWh7IH5CU9RGoa',
+    callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
+  },
+  function(token, tokenSecret, profile, cb) {
+    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 // Configure Passport authenticated session persistence.
 //
@@ -86,6 +97,15 @@ app.get('/login/facebook',
 
 app.get('/login/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/login/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/login/twitter/return', 
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
