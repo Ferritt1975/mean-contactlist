@@ -8,7 +8,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
-var USERS_COLLETCION = "users";
+var USERS_COLLECTION = "users";
 
 passport.use(new FacebookStrategy({
 		clientID: '145826452655768',
