@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
@@ -27,6 +28,17 @@ passport.use(new TwitterStrategy({
     //User.findOrCreate({ twitterId: profile.id }, function (err, user) {
     //  return cb(err, user);
     //});
+  }
+));
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
   }
 ));
 
@@ -88,6 +100,28 @@ app.get('/login/twitter/return',
     res.redirect('/');
   });
 
+passport.use(new LocalStrategy(function(username, password, done) {
+  process.nextTick(function() {
+    UserDetails.findOne({
+      'username': username, 
+    }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false);
+      }
+
+      if (user.password != password) {
+        return done(null, false);
+      }
+
+      return done(null, user);
+    });
+  });
+}));
+
 app.get('/logout', function (req, res) {
     req.session.destroy(function () {
         res.redirect('/');
@@ -117,6 +151,15 @@ app.get('/contact-form',
   function(req, res){
     res.render('contact-form', { user: req.user });
   });
+
+var Schema = mongoose.Schema;
+var UserDetail = new Schema({
+      username: String,
+      password: String
+    }, {
+      collection: 'userInfo'
+    });
+var UserDetails = mongoose.model('userInfo', UserDetail);
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
