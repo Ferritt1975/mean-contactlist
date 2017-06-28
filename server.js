@@ -125,6 +125,16 @@ app.get('/login/local',
 		res.redirect('/');
 	});
 
+app.get('/login',
+	function(req, res){
+		res.render('login');
+	});
+
+app.get('/signup',
+	function(req, res){
+		res.render('signup');
+	});
+
 app.post('/signup', function (req, res, next) {
 	var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
 		if (err) {
