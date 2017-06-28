@@ -43,7 +43,7 @@ passport.use(new LocalStrategy(
 		}
 	});
 		User.findOne({
-			'username': token, 
+			'email': token, 
 		}, function(err, user) {
 			console.log("token:" + token + " secret:" + tokenSecret);
 			if (err) {
