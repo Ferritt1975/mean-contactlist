@@ -136,23 +136,18 @@ app.get('/signup',
 	});
 
 app.post('/signup', function (req, res, next) {
-	var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
-		if (err) {
-			handleError(res, err.message, "Failed to get users.");
-		} else {
-			res.status(200).json(docs);  
-		}
-		var user = {
+		var newUser = {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
 			email: req.body.email,
 			password: req.body.password
 		};
-		User.create(user, function(err, newUser) {
-			if(err) return next(err);
-			req.session.user = email;
-			return res.send('Logged In!');
-		});
+	 db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+		if (err) {
+			handleError(res, err.message, "Failed to add new user.");
+		} else {
+			res.status(200).json(doc.ops[0]);  
+		}
 	});
 });
 
