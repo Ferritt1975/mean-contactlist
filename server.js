@@ -45,6 +45,7 @@ passport.use(new LocalStrategy(
 		User.findOne({
 			'username': token, 
 		}, function(err, user) {
+			console.log("token:" + token + " secret:" + tokenSecret);
 			if (err) {
 				return done(err);
 			}
