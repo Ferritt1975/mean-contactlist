@@ -1,5 +1,6 @@
 var express = require('express');
 var passport = require('passport');
+var mongoose = require('mongoose');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
@@ -152,14 +153,27 @@ app.get('/contact-form',
     res.render('contact-form', { user: req.user });
   });
 
-var Schema = mongoose.Schema;
-var UserDetail = new Schema({
-      username: String,
-      password: String
-    }, {
-      collection: 'userInfo'
-    });
-var UserDetails = mongoose.model('userInfo', UserDetail);
+
+mongoose.connect(sever);
+var userdb = mongoose.connection;
+userdb.on('disconnect', connect); // auto reconnecting
+userdb.on('error', function(err) {
+    debug('connection error:', err);
+});
+
+userdb.once('open', function (callback) {
+  var Schema = mongoose.Schema;
+  var UserDetail = new Schema({
+        username: String,
+        password: String
+      }, {
+        collection: 'userInfo'
+      });
+  var UserDetails = mongoose.model('userInfo', UserDetail);
+});
+
+
+
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
