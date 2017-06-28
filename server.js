@@ -1,6 +1,5 @@
 var express = require('express');
 var passport = require('passport');
-var mongoose = require('mongoose');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
@@ -9,6 +8,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
+var USER_COLLETCION = "users";
 
 passport.use(new FacebookStrategy({
     clientID: '145826452655768',
@@ -103,6 +103,13 @@ app.get('/login/twitter/return',
 
 passport.use(new LocalStrategy(function(username, password, done) {
   process.nextTick(function() {
+    UserDetails = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get users.");
+    } else {
+      res.status(200).json(docs);  
+    }
+  });
     UserDetails.findOne({
       'username': username, 
     }, function(err, user) {
@@ -152,28 +159,6 @@ app.get('/contact-form',
   function(req, res){
     res.render('contact-form', { user: req.user });
   });
-
-
-mongoose.connect(sever);
-var userdb = mongoose.connection;
-userdb.on('disconnect', connect); // auto reconnecting
-userdb.on('error', function(err) {
-    debug('connection error:', err);
-});
-
-userdb.once('open', function (callback) {
-  var Schema = mongoose.Schema;
-  var UserDetail = new Schema({
-        username: String,
-        password: String
-      }, {
-        collection: 'userInfo'
-      });
-  var UserDetails = mongoose.model('userInfo', UserDetail);
-});
-
-
-
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
