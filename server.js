@@ -32,16 +32,34 @@ passport.use(new TwitterStrategy({
   }
 ));
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+passport.use(new LocalStrategy(function(username, password, done) {
+  process.nextTick(function() {
+    var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get users.");
+    } else {
+      res.status(200).json(docs);  
+    }
+  });
+    User.findOne({
+      'username': username, 
+    }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false);
+      }
+
+      if (user.password != password) {
+        return done(null, false);
+      }
+
       return done(null, user);
     });
-  }
-));
+  });
+}));
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -101,34 +119,31 @@ app.get('/login/twitter/return',
     res.redirect('/');
   });
 
-passport.use(new LocalStrategy(function(username, password, done) {
-  process.nextTick(function() {
-    UserDetails = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get users.");
-    } else {
-      res.status(200).json(docs);  
-    }
+app.get('/login/twitter',
+  passport.authenticate('twitter', { failureREdirect: '/login' })
+  function(req, res) {
+    res.redirect('/');
   });
-    UserDetails.findOne({
-      'username': username, 
-    }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
 
-      if (!user) {
-        return done(null, false);
-      }
-
-      if (user.password != password) {
-        return done(null, false);
-      }
-
-      return done(null, user);
-    });
-  });
-}));
+app.post('/signup', function (req, res, next) {
+  var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+  if (err) {
+    handleError(res, err.message, "Failed to get users.");
+  } else {
+    res.status(200).json(docs);  
+  }
+  var user = {
+     Name: req.body.name,
+     Email: req.body.email,
+     Pass: req.body.pass,
+     Num: req.body.num
+ };
+ User.create(user, function(err, newUser) {
+    if(err) return next(err);
+    req.session.user = email;
+    return res.send('Logged In!');
+ });
+});
 
 app.get('/logout', function (req, res) {
     req.session.destroy(function () {
