@@ -143,10 +143,10 @@ app.post('/signup', function (req, res, next) {
 			res.status(200).json(docs);  
 		}
 		var user = {
-			Name: req.body.name,
-			Email: req.body.email,
-			Pass: req.body.pass,
-			Num: req.body.num
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
+			email: req.body.email,
+			password: req.body.password
 		};
 		User.create(user, function(err, newUser) {
 			if(err) return next(err);
