@@ -32,7 +32,8 @@ passport.use(new TwitterStrategy({
 	}
 ));
 
-passport.use(new LocalStrategy(function(username, password, done) {
+passport.use(new LocalStrategy(
+	function(token, tokenSecret, profile, cb) {
 	process.nextTick(function() {
 		var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
 		if (err) {
@@ -42,21 +43,18 @@ passport.use(new LocalStrategy(function(username, password, done) {
 		}
 	});
 		User.findOne({
-			'username': username, 
+			'username': token, 
 		}, function(err, user) {
 			if (err) {
 				return done(err);
 			}
-
 			if (!user) {
 				return done(null, false);
 			}
-
-			if (user.password != password) {
+			if (user.password != tokenSecret) {
 				return done(null, false);
 			}
-
-			return done(null, user);
+			return done(null, cb);
 		});
 	});
 }));
@@ -105,7 +103,7 @@ app.get('/login/facebook',
 	passport.authenticate('facebook'));
 
 app.get('/login/facebook/return', 
-	passport.authenticate('facebook', { failureRedirect: '/login' }),
+	passport.authenticate('facebook', { failureRedirect: '/' }),
 	function(req, res) {
 		res.redirect('/');
 	});
@@ -114,21 +112,16 @@ app.get('/login/twitter',
 	passport.authenticate('twitter'));
 
 app.get('/login/twitter/return', 
-	passport.authenticate('twitter', { failureRedirect: '/login' }),
+	passport.authenticate('twitter', { failureRedirect: '/' }),
 	function(req, res) {
 		res.redirect('/');
 	});
   
 app.post('/login/local', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/');
   });
-
-app.get('/login',
-	function(req, res){
-		res.render('login');
-	});
 
 app.get('/signup',
 	function(req, res){
