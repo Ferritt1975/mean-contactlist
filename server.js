@@ -48,10 +48,10 @@ passport.use(new LocalStrategy(
 			if (err) {
 				return done(err);
 			}
-			if (!user) {
+			if (!token) {
 				return done(null, false);
 			}
-			if (user.password != tokenSecret) {
+			if (token.password != tokenSecret) {
 				return done(null, false);
 			}
 			return done(null, cb);
