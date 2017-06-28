@@ -148,6 +148,7 @@ app.post('/signup', function (req, res, next) {
 		} else {
 			res.status(200).json(doc.ops[0]);  
 		}
+		res.redirect)('/');
 	});
 });
 
