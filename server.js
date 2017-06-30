@@ -26,14 +26,11 @@ passport.use(new TwitterStrategy({
 	},
 	function(token, tokenSecret, profile, cb) {
 		return cb(null, profile);
-		//User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-		//  return cb(err, user);
-		//});
 	}
 ));
 
 passport.use(new LocalStrategy(
-	function(token, tokenSecret, profile, cb) {
+	function(token, tokenSecret, cb) {
 	process.nextTick(function() {
 		var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
 		if (err) {
@@ -49,10 +46,10 @@ passport.use(new LocalStrategy(
 			if (err) {
 				return done(err);
 			}
-			if (!token) {
+			if (!user) {
 				return done(null, false);
 			}
-			if (token.password != tokenSecret) {
+			if (user.password != tokenSecret) {
 				return done(null, false);
 			}
 			return done(null, cb);
