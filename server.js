@@ -40,14 +40,18 @@ passport.use(new LocalStrategy({
     }, function(err, user) {
       console.log("token:" + token + " secret:" + tokenSecret);
       if (err) {
+        console.log("Error finding user.")
         return cb(err);
       }
       if (!user) {
+        console.log("User Not found.")
         return cb(null, false);
       }
       if (user.password != tokenSecret) {
+        console.log("Invalid Password.")
         return cb(null, false);
       }
+      console.log("User " + user + " logged in.");
       return cb(null, user);
     });
   }));
