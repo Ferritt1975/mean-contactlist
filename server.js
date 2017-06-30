@@ -34,6 +34,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
   },
   function(token, tokenSecret, profile, cb) {
+/*
     var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
       if (err) {
         handleError(res, err.message, "Failed to get users.");
@@ -44,7 +45,6 @@ passport.use(new LocalStrategy({
         'email': token,
       }, function(err, user) {
         console.log("token:" + token + " secret:" + tokenSecret);
-/*
         if (err) {
           return cb(err);
         }
@@ -54,10 +54,11 @@ passport.use(new LocalStrategy({
         if (user.password != tokenSecret) {
           return cb(null, false);
         }
-        */
         return cb(null, profile);
       });
     });
+  */
+    return cb(null, profile);
   }));
 
 passport.serializeUser(function(user, cb) {
