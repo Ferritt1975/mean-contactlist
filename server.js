@@ -34,7 +34,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
   },
   function(token, tokenSecret, cb) {
-    var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {});
+    var User = db.collection(USERS_COLLECTION).find({}).toArray();
     User.findOne({
       'email': token,
     }, function(err, user) {
