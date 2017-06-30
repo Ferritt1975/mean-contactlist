@@ -147,8 +147,7 @@ app.post('/signup', function(req, res, next) {
     password: req.body.password
   };
   db.collection(USERS_COLLECTION).insertOne(newUser);
-    res.redirect('/');
-  });
+  res.redirect('/');
 });
 
 app.get('/logout', function(req, res) {
