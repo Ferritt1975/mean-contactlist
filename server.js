@@ -36,25 +36,25 @@ passport.use(new LocalStrategy({
   function(token, tokenSecret, cb) {
     var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
       if (err) {
-        handleError(res, err.message, "Failed to get users.");
+        console.log("Failed to get users.");
       } else {
-        res.status(200).json(docs);
+        return docs;
       }
-      User.findOne({
-        'email': token,
-      }, function(err, user) {
-        console.log("token:" + token + " secret:" + tokenSecret);
-        if (err) {
-          return cb(err);
-        }
-        if (!user) {
-          return cb(null, false);
-        }
-        if (user.password != tokenSecret) {
-          return cb(null, false);
-        }
-        return cb(null, user);
-      });
+    });
+    User.findOne({
+      'email': token,
+    }, function(err, user) {
+      console.log("token:" + token + " secret:" + tokenSecret);
+      if (err) {
+        return cb(err);
+      }
+      if (!user) {
+        return cb(null, false);
+      }
+      if (user.password != tokenSecret) {
+        return cb(null, false);
+      }
+      return cb(null, user);
     });
   }));
 
