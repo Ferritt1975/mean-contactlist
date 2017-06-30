@@ -46,16 +46,16 @@ passport.use(new LocalStrategy({
         console.log("token:" + token + " secret:" + tokenSecret);
 /*
         if (err) {
-          return done(err);
+          return cb(err);
         }
         if (!user) {
-          return done(null, false);
+          return cb(null, false);
         }
         if (user.password != tokenSecret) {
-          return done(null, false);
+          return cb(null, false);
         }
         */
-        return done(null, profile);
+        return cb(null, profile);
       });
     });
   }));
