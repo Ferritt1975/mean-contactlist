@@ -42,12 +42,12 @@ passport.use(new LocalStrategy({
           res.status(200).json(docs);
         }
       });
-      res.status(200).json(User);
       User.findOne({
         'email': token,
       }, function(err, user) {
         console.log("token:" + token + " secret:" + tokenSecret);
         if (err) {
+          Console.log(err);
           return done(err);
         }
         if (!user) {
