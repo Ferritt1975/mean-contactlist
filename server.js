@@ -159,7 +159,7 @@ app.post('/signup', function(req, res, next) {
       }
     });
   } else {
-    handleError(res, err.message, "Email address already exists.");
+    console.log("Email address already exists.");
     res.redirect('/');
   };
 });
