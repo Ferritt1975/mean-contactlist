@@ -34,8 +34,8 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
   },
   function(token, tokenSecret, cb) {
-    var User = db.collection(USERS_COLLECTION);
-    User.findOne({
+    var col = db.collection(USERS_COLLECTION);
+    col.findOne({
       'email': token,
     }, function(err, user) {
       console.log("token:" + token + " secret:" + tokenSecret);
@@ -146,8 +146,22 @@ app.post('/signup', function(req, res, next) {
     email: req.body.email,
     password: req.body.password
   };
-  db.collection(USERS_COLLECTION).insertOne(newUser);
-  res.redirect('/');
+  var col = db.collection(USERS_COLLECTION);
+  var user = col.findOne({
+      'email': newUser.email,
+    });
+  if (!user) {
+    col.insertOne(newUser, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to add new user.");
+      } else {
+        res.redirect('/');
+      }
+    });
+  } else {
+    handleError(res, err.message, "Email address already exists.");
+    res.redirect('/');
+  };
 });
 
 app.get('/logout', function(req, res) {
