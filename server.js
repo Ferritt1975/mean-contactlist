@@ -43,6 +43,7 @@ passport.use(new LocalStrategy(
 			'email': token, 
 		}, function(err, user) {
 			console.log("token:" + token + " secret:" + tokenSecret);
+			res.status(200).json(User);  
 			if (err) {
 				return done(err);
 			}
