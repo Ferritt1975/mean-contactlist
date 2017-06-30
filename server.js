@@ -30,7 +30,7 @@ passport.use(new TwitterStrategy({
 ));
 
 passport.use(new LocalStrategy(
-	function(token, tokenSecret, cb) {
+	function(token, tokenSecret, profile, cb) {
 	process.nextTick(function() {
 		var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
 		if (err) {
@@ -52,7 +52,7 @@ passport.use(new LocalStrategy(
 			if (user.password != tokenSecret) {
 				return done(null, false);
 			}
-			return done(null, cb);
+			return done(null, profile);
 		});
 	});
 }));
