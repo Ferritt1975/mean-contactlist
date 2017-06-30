@@ -34,20 +34,17 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
   },
   function(token, tokenSecret, profile, cb) {
-    process.nextTick(function() {
-      var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
-        if (err) {
-          handleError(res, err.message, "Failed to get users.");
-        } else {
-          res.status(200).json(docs);
-        }
-      });
+    var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+      if (err) {
+        handleError(res, err.message, "Failed to get users.");
+      } else {
+        res.status(200).json(docs);
+      }
       User.findOne({
         'email': token,
       }, function(err, user) {
         console.log("token:" + token + " secret:" + tokenSecret);
         if (err) {
-          Console.log(err);
           return done(err);
         }
         if (!user) {
