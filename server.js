@@ -146,12 +146,7 @@ app.post('/signup', function(req, res, next) {
     email: req.body.email,
     password: req.body.password
   };
-  db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to add new user.");
-    } else {
-      res.status(200).json(doc.ops[0]);
-    }
+  db.collection(USERS_COLLECTION).insertOne(newUser);
     res.redirect('/');
   });
 });
