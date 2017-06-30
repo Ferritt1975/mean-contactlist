@@ -34,13 +34,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
   },
   function(token, tokenSecret, cb) {
-    var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
-      if (err) {
-        console.log("Failed to get users.");
-      } else {
-        return docs;
-      }
-    });
+    var User = db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {});
     User.findOne({
       'email': token,
     }, function(err, user) {
