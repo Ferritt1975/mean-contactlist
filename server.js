@@ -139,6 +139,11 @@ app.get('/signup',
     res.render('signup');
   });
 
+app.get('/tos',
+  function(req, res) {
+    res.render('tos');
+  });
+
 app.post('/signup', function(req, res, next) {
   var newUser = {
     firstname: req.body.firstname,
