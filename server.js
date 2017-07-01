@@ -40,9 +40,9 @@ passport.use(new FacebookStrategy({
             }
           });
         }
-      }
+      };
+      return cb(null, user);
     });
-    return cb(null, user);
   }));
 
 passport.use(new TwitterStrategy({
