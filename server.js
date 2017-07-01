@@ -42,7 +42,7 @@ passport.use(new FacebookStrategy({
         }
       }
     });
-    return cb(null, profile);
+    return cb(null, user);
   }));
 
 passport.use(new TwitterStrategy({
