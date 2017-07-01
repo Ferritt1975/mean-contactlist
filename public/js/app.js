@@ -13,6 +13,9 @@ angular.module("contactsApp", ['ngRoute'])
             .when("/tos", {
                 templateUrl: "tos"
             })
+            .when("/privacy", {
+                templateUrl: "privacy"
+            })
             .when("/new/contact", {
                 controller: "NewContactController",
                 templateUrl: "contact-form"

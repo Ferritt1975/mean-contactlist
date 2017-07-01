@@ -144,6 +144,11 @@ app.get('/tos',
     res.render('tos');
   });
 
+app.get('/privacy',
+  function(req, res) {
+    res.render('privacy');
+  });
+
 app.post('/signup', function(req, res, next) {
   var newUser = {
     firstname: req.body.firstname,
