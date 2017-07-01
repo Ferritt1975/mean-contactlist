@@ -16,6 +16,33 @@ passport.use(new FacebookStrategy({
     callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/facebook/return'
   },
   function(accessToken, refreshToken, profile, cb) {
+    var col = db.collection(USERS_COLLECTION);
+    col.findOne({
+      'facebook_id': JSON.stringify(profile.id)
+    }, function(err, user) {
+      if (err) {
+        return cb(err);
+      },
+      if (!user) {
+        var displayName = JSON.stringify(profile.displayName).split(" ");
+        var newUser = {
+          firstname: displayName[0],
+          lastname: displayName[1],
+          facebook_id: JSON.stringify(profile.id)
+        };
+        if (err) {
+          handleError(res, err.message, "Failed to add new user.");
+        } else {
+          col.insertOne(newUser, function(err, doc) {
+            if (err) {
+              handleError(res, err.message, "Failed to add new user.");
+              res.redirect('/');
+            }
+          });
+        }
+      }
+    }
+    })
     return cb(null, profile);
   }));
 
@@ -38,17 +65,13 @@ passport.use(new LocalStrategy({
     col.findOne({
       'email': token,
     }, function(err, user) {
-      console.log("token:" + token + " secret:" + tokenSecret);
       if (err) {
-        console.log("Error finding user.")
         return cb(err);
       }
       if (!user) {
-        console.log("User Not found.")
         return cb(null, false);
       }
       if (user.password != tokenSecret) {
-        console.log("Invalid Password.")
         return cb(null, false);
       }
       console.log("User " + user + " logged in.");
