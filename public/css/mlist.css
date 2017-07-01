@@ -1,6 +1,14 @@
 body{
-    background:url('/img/bg.jpg');
+    background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/09/18696/6d5cbd2bb285cfc1e24c2f1e0edf9cb7.jpg');
     padding:50px;
+}
+
+.panel-transparent {
+    background: none;
+}
+
+.panel-transparent .panel-body{
+    background-color: rgba(255,255,255,0.8)!important;
 }
 
 #login-dp{
