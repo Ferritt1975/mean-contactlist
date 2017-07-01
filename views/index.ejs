@@ -10,8 +10,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if (user) { %>
-        <li id="myDropDown" class="dropdown">
+        <li><a href="/logout">Logout</a></li>
       <% } else { %>
+        <li id="myDropDown" class="dropdown">
           <a href="#" id="dLabel" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
           <ul id="login-dp" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 
@@ -70,7 +71,7 @@
             </div>
           </ul>
         </li>
-        <% } %>
+        <^% } %>
       </ul>
     </div>
   </div>
