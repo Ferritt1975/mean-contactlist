@@ -22,7 +22,7 @@ passport.use(new FacebookStrategy({
     }, function(err, user) {
       if (err) {
         return cb(err);
-      },
+      };
       if (!user) {
         var displayName = JSON.stringify(profile.displayName).split(" ");
         var newUser = {
