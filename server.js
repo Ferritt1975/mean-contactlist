@@ -19,7 +19,7 @@ passport.use(new FacebookStrategy({
     var col = db.collection(USERS_COLLECTION);
     console.log("FACEBOOK: " + JSON.stringify(profile));
     col.findOne({
-      'facebook_id': JSON.stringify(profile.id)
+      'facebook_id': JSON.stringify(profile.id).replace(/\"/g, "")
     }, function(err, user) {
       if (err) {
         return cb(err);
