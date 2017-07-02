@@ -63,7 +63,7 @@ passport.use(new TwitterStrategy({
         var newUser = {
           firstname: displayName[0],
           lastname: displayName[1],
-          facebook_id: JSON.stringify(profile.id).replace(/\"/g, "")
+          twitter_id: JSON.stringify(profile.id).replace(/\"/g, "")
         };
         if (err) {
           handleError(res, err.message, "Failed to add new user.");
