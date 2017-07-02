@@ -13,12 +13,18 @@
         <li><p class="navbar-text">Welcome, <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
         <li><a href="/logout">Logout</a></li>
         <li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Link to Facebook - <i class="fa-li fa fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="#">Link to Twitter - <i class="fa-li fa fa-twitter" aria-hidden="true"></i></a></li>
-          </ul>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span class="glyphicon glyphicon-cog"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+				<li class="dropdown-header">Link my Account</li>
+			    <li><a href="/login/facebook" class="btn btn-fb"><i class="fa fa-facebook"></i>Facebook</a>
+</li>
+			    <li><a href="/login/twitter" class="btn btn-fb"><i class="fa fa-twitter"></i>Twitter</a>
+</li>
+			  </ul>
+			</div>
         </li>
       <% } else { %>
         <li id="myDropDown" class="dropdown">
