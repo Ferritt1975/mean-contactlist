@@ -51,15 +51,6 @@ passport.use(new TwitterStrategy({
     callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
   },
   function(token, tokenSecret, profile, cb) {
-    return cb(null, profile);
-  }
-));
-
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-  },
-  function(token, tokenSecret, cb) {
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
       'twitter_id': JSON.stringify(profile.id).replace(/\"/g, "")
@@ -85,6 +76,30 @@ passport.use(new LocalStrategy({
           });
         }
       };
+      return cb(null, user);
+    });
+  }
+));
+
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+  },
+  function(token, tokenSecret, cb) {
+    var col = db.collection(USERS_COLLECTION);
+    col.findOne({
+      'email': token,
+    }, function(err, user) {
+      if (err) {
+        return cb(err);
+      }
+      if (!user) {
+        return cb(null, false);
+      }
+      if (user.password != tokenSecret) {
+        return cb(null, false);
+      }
+      console.log("User " + user + " logged in.");
       return cb(null, user);
     });
   }));
