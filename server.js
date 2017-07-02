@@ -62,18 +62,29 @@ passport.use(new LocalStrategy({
   function(token, tokenSecret, cb) {
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
-      'email': token,
+      'twitter_id': JSON.stringify(profile.id).replace(/\"/g, "")
     }, function(err, user) {
       if (err) {
         return cb(err);
-      }
+      };
       if (!user) {
-        return cb(null, false);
-      }
-      if (user.password != tokenSecret) {
-        return cb(null, false);
-      }
-      console.log("User " + user + " logged in.");
+        var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
+        var newUser = {
+          firstname: displayName[0],
+          lastname: displayName[1],
+          facebook_id: JSON.stringify(profile.id).replace(/\"/g, "")
+        };
+        if (err) {
+          handleError(res, err.message, "Failed to add new user.");
+        } else {
+          col.insertOne(newUser, function(err, doc) {
+            if (err) {
+              handleError(res, err.message, "Failed to add new user.");
+              res.redirect('/');
+            }
+          });
+        }
+      };
       return cb(null, user);
     });
   }));
