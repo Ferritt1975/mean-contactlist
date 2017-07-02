@@ -17,14 +17,12 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     var col = db.collection(USERS_COLLECTION);
-    console.log("FACEBOOK: " + JSON.stringify(profile));
     col.findOne({
       'facebook_id': JSON.stringify(profile.id).replace(/\"/g, "")
     }, function(err, user) {
       if (err) {
         return cb(err);
       };
-      console.log(JSON.stringify(user));
       if (!user) {
         var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
         var newUser = {

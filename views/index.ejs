@@ -10,7 +10,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if (user) { %>
-        <li><p class="navbar-text">Welcome, <a href="#" class="navbar-link"><%- JSON.stringify(user) %>!</a></p></li>
+        <li><p class="navbar-text">Welcome, <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
         <li><a href="/logout">Logout</a></li>
       <% } else { %>
         <li id="myDropDown" class="dropdown">
