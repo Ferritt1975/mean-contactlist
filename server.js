@@ -17,6 +17,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     var col = db.collection(USERS_COLLECTION);
+    console.log("FACEBOOK: " + JSON.stringify(profile));
     col.findOne({
       'facebook_id': JSON.stringify(profile.id)
     }, function(err, user) {
