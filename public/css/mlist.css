@@ -75,3 +75,9 @@ html {
         border-top:0 none;
     }
 }
+
+.carousel-content {
+    color:black;
+    display:flex;
+    align-items:center;
+}
