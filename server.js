@@ -258,7 +258,7 @@ app.get('/logout', function(req, res) {
 
 app.post('/upload',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res) {
+  function(req, res, next) {
     console.log(req.body);
     res.status(200);
   })
