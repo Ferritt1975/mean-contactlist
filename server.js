@@ -41,10 +41,8 @@ passport.use(new FacebookStrategy({
             user = newUser;
           });
         }
-        console.log("newUser: " + JSON.stringify(user));
         return cb(null, newUser);
-      } else {;
-        console.log("user: " + JSON.stringify(user));
+      } else {
         return cb(null, user);
       }
     });
@@ -77,11 +75,14 @@ passport.use(new TwitterStrategy({
             if (err) {
               handleError(res, err.message, "Failed to add new user.");
               res.redirect('/');
-            }
+            };
+            user = newUser;
           });
         }
-      };
-      return cb(null, user);
+        return cb(null, newUser);
+      } else {
+        return cb(null, user);
+      }
     });
   }
 ));
