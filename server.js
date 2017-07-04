@@ -168,7 +168,7 @@ app.get('/login',
   });
 
 app.get('/login/facebook',
-  passport.authenticate('facebook'), { scope: [ 'email'] });
+  passport.authenticate('facebook', { scope: 'email'}));
 
 app.get('/login/facebook/return',
   passport.authenticate('facebook', {
