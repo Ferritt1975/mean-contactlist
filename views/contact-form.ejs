@@ -36,10 +36,11 @@
         </p>
       </div>
       <div class="col-md-4">
+        <label>Avitar</label>label>
         <input id="selectImage" class="form-control" type="file" accept="image/*">
         <br>
-        <img id="img" src="//placehold.it/1x1/" class="img-responsive img-rounded"/>
-        <input id="image" class="form-control" type="text" ng-change="imageHandler()" ng-model="contact.base64img">
+        <img id="img" src="{{ contact.base64img }}" class="img-responsive img-rounded"/>
+        <input id="image" class="form-control" type="hidden" ng-model="contact.base64img">
         <p>
           <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
           <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
