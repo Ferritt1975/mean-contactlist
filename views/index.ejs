@@ -10,14 +10,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if (user) { %>
-        <li><p class="navbar-text">Welcome,
-                <% switch (session.loggedInWith) {
-          case 'facebook': %>
-          Facebook user
-        <% break;
-          default: break; } %>
- 
-        <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
+        <li><p class="navbar-text">Welcome, <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
         <li><a href="/logout">Logout</a></li>
         <li>
 			<div class="btn-group">
@@ -28,8 +21,10 @@
 			  </button>
 			  <ul class="dropdown-menu">
 				<li class="dropdown-header">Link my Account</li>
-			    <li><div><a href="/login/facebook" class="btn btn-fb"><i class="fa fa-facebook"></i></a><a href="/login/facebook" class="btn btn-link"> Facebook</a></div></li>
-			    <li><div><a href="/login/twitter" class="btn btn-tw" style="padding: 6px 9.5px;"	><i class="fa fa-twitter"></i></a><a href="/login/twitter" class="btn btn-link"> Twitter</a></div></li>
+                <% if (session.loggedInWith != 'facebook') { %>
+			    <li><div><a href="/login/facebook" class="btn btn-fb"><i class="fa fa-facebook"></i></a><a href="/login/facebook" class="btn btn-link"> Facebook</a></div></li><% } %>
+                <% if (session.loggedInWith != 'twitter') { %>
+			    <li><div><a href="/login/twitter" class="btn btn-tw" style="padding: 6px 9.5px;""><i class="fa fa-twitter"></i></a><a href="/login/twitter" class="btn btn-link"> Twitter</a></div></li><% } %>
 			  </ul>
 			</div>
         </li>
