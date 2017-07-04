@@ -63,6 +63,7 @@ passport.use(new TwitterStrategy({
         return cb(err);
       };
       if (!user) {
+        console.log(JSON.stringify(profile));
         var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(/(?=[A-Z])/);
         var newUser = {
           firstname: profile.name.givenName,
