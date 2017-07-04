@@ -1,4 +1,4 @@
-angular.module("contactsApp", ['ngRoute'])
+angular.module("contactsApp", ['ngRoute', 'ngFileUpload'])
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
