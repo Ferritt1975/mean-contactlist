@@ -256,6 +256,12 @@ app.get('/logout', function(req, res) {
   });
 });
 
+app.post('/upload',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res) {
+    console.log(req.body);
+  })
+
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
