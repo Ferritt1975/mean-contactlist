@@ -12,6 +12,7 @@
       <% if (user) { %>
         <li><p class="navbar-text">Welcome, <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
         <li><a href="/logout">Logout</a></li>
+        <!-- Disabled since I figured out the issue with pulling users email.
         <li>
 			<div class="btn-group">
 			  <button type="button" class="navbar-btn btn btn-primary"><span class="glyphicon glyphicon-cog"></span></button>
@@ -28,6 +29,7 @@
 			  </ul>
 			</div>
         </li>
+        -->
       </ul>
     </div>
   </div>

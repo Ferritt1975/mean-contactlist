@@ -328,7 +328,7 @@ function handleError(res, reason, message, code) {
 app.get("/contacts",
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
-    db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+    db.collection(CONTACTS_COLLECTION).find({ 'owner': user._id }).toArray(function(err, docs) {
       if (err) {
         handleError(res, err.message, "Failed to get contacts.");
       } else {
