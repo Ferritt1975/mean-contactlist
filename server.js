@@ -17,7 +17,6 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'first_name', 'last_name', 'link', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(JSON.stringify(profile));
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
       'email': profile.emails[0].value
@@ -342,7 +341,7 @@ app.post("/contacts",
   function(req, res) {
     var newContact = req.body;
     newContact.createDate = new Date();
-    newContact.owner = req.user._id;
+    //newContact.owner = req.user._id;
 
     if (!(req.body.firstName || req.body.lastName)) {
       handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
