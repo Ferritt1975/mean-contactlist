@@ -38,6 +38,7 @@ angular.module("contactsApp", ['ngRoute'])
                 });
         }
         this.createContact = function(contact) {
+            alert(contact);
             return $http.post("/contacts", contact).
                 then(function(response) {
                     return response;
