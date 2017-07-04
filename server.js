@@ -26,7 +26,7 @@ passport.use(new FacebookStrategy({
         return cb(err);
       };
       if (!user) {
-        var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
+        //var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
         var newUser = {
           firstname: profile.name.givenName,
           lastname: profile.name.familyName,
