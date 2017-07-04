@@ -55,7 +55,6 @@ angular.module("contactsApp", ['ngRoute'])
                 });
         }
         this.editContact = function(contact) {
-            alert(JSON.stringify(contact));
             var url = "/contacts/" + contact._id;
             console.log(contact._id);
             return $http.put(url, contact).
