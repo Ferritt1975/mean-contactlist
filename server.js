@@ -67,6 +67,7 @@ passport.use(new TwitterStrategy({
         var newUser = {
           firstname: displayName[0],
           lastname: displayName[1],
+          emailaddress: profile.emails[0].value,
           twitter_id: JSON.stringify(profile.id).replace(/\"/g, "")
         };
         if (err) {
