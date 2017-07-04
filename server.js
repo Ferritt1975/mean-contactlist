@@ -57,18 +57,18 @@ passport.use(new TwitterStrategy({
   function(token, tokenSecret, profile, cb) {
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
-      'twitter_id': JSON.stringify(profile.id).replace(/\"/g, "")
+      'email': profile.emails[0].value
     }, function(err, user) {
       if (err) {
         return cb(err);
       };
       if (!user) {
-        console.log(JSON.stringify(profile));
         var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(/(?=[A-Z])/);
         var newUser = {
-          firstname: profile.name.givenName,
-          lastname: profile.name.familyName,
-          email: profile.emails[0].value
+          firstname: displayName[0],
+          lastname: displayName[1],
+          email: profile.emails[0].value,
+          twitter_id: profile.id
         };
         if (err) {
           handleError(res, err.message, "Failed to add new user.");
@@ -83,6 +83,7 @@ passport.use(new TwitterStrategy({
         }
         return cb(null, newUser);
       } else {
+        col.updateOne( { 'user': profile.emails[0].value } $set { 'twitter_id' : profile.id } );
         return cb(null, user);
       }
     });
