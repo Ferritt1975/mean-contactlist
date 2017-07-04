@@ -10,12 +10,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if (user) { %>
-        <li><p class="navbar-text">Welcome, 
-        <% switch (session.loggedInWith) {
-          case ' facebook user ': %>
-          Facebook
-        <% break;
-          default: break; } %>
+        <li><p class="navbar-text">Welcome, <%- JSON.stringify(session.loggedInWith).replace(/\"/g, "") %> 
         <a href="#" class="navbar-link"><%- JSON.stringify(user.firstname).replace(/\"/g, "") %>!</a></p></li>
         <li><a href="/logout">Logout</a></li>
         <li>
