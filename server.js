@@ -232,11 +232,11 @@ app.post('/signup', function(req, res, next) {
     email: req.body.email,
     password: req.body.password
   };
-  console.log("New User: " + JSON.stringify(newUser));
   var col = db.collection(USERS_COLLECTION);
   var user = col.findOne({
       'email': newUser.email,
     });
+  console.log("User: " + JSON.stringify(user));
   if (!user) {
     col.insertOne(newUser, function(err, doc) {
       if (err) {
