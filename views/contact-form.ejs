@@ -36,12 +36,9 @@
         </p>
       </div>
       <div class="col-md-4">
-        <form name="myForm" ng-app="contactsApp" ng-controller="MyCtrl">
+        <form name="myForm" ng-controller="MyCtrl">
           <fieldset>
             <legend>Upload on form submit</legend>
-            Username:
-            <input type="text" name="userName" ng-model="username" size="31" required>
-            <i ng-show="myForm.userName.$error.required">*required</i>
             <br>Photo:
             <input type="file" ngf-select ng-model="picFile" name="file"    
                    accept="image/*" ngf-max-size="2MB" required
