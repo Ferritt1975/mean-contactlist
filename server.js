@@ -39,7 +39,7 @@ passport.use(new FacebookStrategy({
               res.redirect('/');
             };
             console.log("newUser: " + JSON.stringify(newUser));
-            return cb(null, newUser);
+            user = newUser;
           });
         }
       };
@@ -161,10 +161,10 @@ app.get('/login/facebook',
 app.get('/login/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
-  })/*,
+  }),
   function(req, res) {
     res.redirect('/');
-  }*/);
+  });
 
 app.get('/login/twitter',
   passport.authenticate('twitter'));
