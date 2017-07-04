@@ -1,10 +1,10 @@
 <div class="row" ng-hide="contact._id">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <h2>Create new contact</h2>
   </div>
 </div>
-<div class="container">
-  <div>
+<div class="row">
+  <div class="col-md-8">
     <p>
       <label>First Name (required)</label> 
       <input id="name" class="form-control" type="text" ng-model="contact.firstName" required> 
@@ -33,6 +33,17 @@
       <label>Twitter Handle</label> 
       <input id="name" class="form-control" type="text" ng-model="contact.twitter"> 
     </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form ng-app="fileUpload" ng-controller="MyCtrl" name="form"> Single Image with validations
+      <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 100, height: 100}">Select</div>
+      Multiple files
+      <div class="button" ngf-select ng-model="files" ngf-multiple="true">Select</div>
+      Drop files: <div ngf-drop ng-model="files" class="drop-box">Drop</div>
+      button type="submit" ng-click="submit()">submit</button>
+    </form>
     <p>
       <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
       <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
