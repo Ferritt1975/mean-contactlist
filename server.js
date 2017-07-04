@@ -118,7 +118,6 @@ passport.use(new LocalStrategy({
       if (user.password != tokenSecret) {
         return cb(null, false);
       }
-      console.log("User " + user + " logged in.");
       return cb(null, user);
     });
   }));
@@ -340,7 +339,6 @@ app.get("/contacts",
 app.post("/contacts",
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
-    console.log("BODY: " + JSON.stringify(req));
     var newContact = req.body;
     newContact.createDate = new Date();
     newContact.owner = req.user._id;
