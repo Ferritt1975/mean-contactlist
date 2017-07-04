@@ -40,6 +40,7 @@
         <input id="selectImage" class="form-control" type="file" accept="image/*">
         <br>
         <img id="img" src="{{ contact.base64img }}" class="img-responsive img-rounded"/>
+        <input id="image" class="form-control" type="text" ng-model="contact.base64img" style="display: none;">
         <p>
           <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
           <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
@@ -54,7 +55,9 @@ function readImage() {
         var FR= new FileReader();
         FR.onload = function(e) {
             document.getElementById("img").src = e.target.result;
-            $scope.contact.base64img = e.target.result;
+            $(function() {
+                $('#image').val(e.target.result).trigger('input');
+            });
         };       
         FR.readAsDataURL( this.files[0] );
     }
