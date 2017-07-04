@@ -37,9 +37,10 @@ passport.use(new FacebookStrategy({
           col.insertOne(newUser, function(err, doc) {
             if (err) {
               handleError(res, err.message, "Failed to add new user.");
-              console.log("user: " + JSON.stringify(newUser));
-              return cb(null, newUser);
-            }
+              res.redirect('/');
+            };
+            console.log("user: " + JSON.stringify(newUser));
+            return cb(null, newUser);
           });
         }
       };
