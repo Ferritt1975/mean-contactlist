@@ -165,6 +165,10 @@ app.get('/login/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
   }),
+    function(req, res, next) {
+    req.session.loggedInWith = 'facebook';
+    next();
+  },
   function(req, res) {
     res.redirect('/');
   });
