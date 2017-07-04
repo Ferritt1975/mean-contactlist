@@ -260,6 +260,7 @@ app.post('/upload',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
     console.log(req.body);
+    res.status(200);
   })
 
 app.get('/profile',
