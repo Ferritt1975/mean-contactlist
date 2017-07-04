@@ -38,13 +38,15 @@ passport.use(new FacebookStrategy({
               handleError(res, err.message, "Failed to add new user.");
               res.redirect('/');
             };
-            console.log("newUser: " + JSON.stringify(newUser));
             user = newUser;
           });
         }
-      };
-      console.log("user: " + JSON.stringify(user));
-      return cb(null, user);
+        console.log("newUser: " + JSON.stringify(user));
+        return cb(null, newUser);
+      } else {;
+        console.log("user: " + JSON.stringify(user));
+        return cb(null, user);
+      }
     });
   }));
 
