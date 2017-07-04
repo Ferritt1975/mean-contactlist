@@ -339,9 +339,10 @@ app.get("/contacts",
 app.post("/contacts",
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
+    console.log(JSON.stringify(req.body));
     var newContact = req.body;
     newContact.createDate = new Date();
-    //newContact.owner = req.user._id;
+    newContact.owner = req.user._id;
 
     if (!(req.body.firstName || req.body.lastName)) {
       handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
