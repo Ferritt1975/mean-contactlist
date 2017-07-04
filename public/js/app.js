@@ -1,4 +1,4 @@
-angular.module("contactsApp", ['ngRoute', 'ngFileUpload'])
+angular.module("contactsApp", ['ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -77,26 +77,6 @@ angular.module("contactsApp", ['ngRoute', 'ngFileUpload'])
                 });
         }
     })
-    .controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-        $scope.uploadPic = function(file) {
-        file.upload = Upload.upload({
-          url: '/upload',
-          data: {file: file},
-        });
-
-        file.upload.then(function (response) {
-          $timeout(function () {
-                file.result = response.data;
-          });
-        }, function (response) {
-          if (response.status > 0)
-            $scope.errorMsg = response.status + ': ' + response.data;
-        }, function (evt) {
-          // Math.min is to fix IE which reports 200% sometimes
-          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-        });
-        }
-    }])
     .controller("ListController", function(contacts, $scope) {
         $scope.contacts = contacts.data;
     })
