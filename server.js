@@ -86,7 +86,7 @@ passport.use(new TwitterStrategy({
         col.updateOne(
           { 'user': profile.emails[0].value },
           { 
-            $set { 'twitter_id' : profile.id } 
+            $set: { 'twitter_id' : profile.id } 
           });
         return cb(null, user);
       }
