@@ -179,10 +179,6 @@ app.get('/login/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
   }),
-  function(req, res, next) {
-    req.session.loggedInWith = 'facebook';
-    next();
-  },
   function(req, res) {
     res.redirect('/');
   });
@@ -194,10 +190,6 @@ app.get('/login/twitter/return',
   passport.authenticate('twitter', {
     failureRedirect: '/'
   }),
-  function(req, res, next) {
-    req.session.loggedInWith = 'facebook';
-    next();
-  },
   function(req, res) {
     res.redirect('/');
   });
@@ -227,8 +219,8 @@ app.get('/privacy',
 
 app.post('/signup', function(req, res, next) {
   var newUser = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstname: req.body.firstName,
+    lastname: req.body.lastName,
     email: req.body.email,
     password: req.body.password
   };
