@@ -161,11 +161,11 @@ app.get('/login/facebook',
 app.get('/login/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
-  }),
-/*  function(req, res) {
+  })/*,
+  function(req, res) {
     res.redirect('/');
-  });
-*/
+  }*/);
+
 app.get('/login/twitter',
   passport.authenticate('twitter'));
 
