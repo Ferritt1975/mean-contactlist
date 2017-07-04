@@ -83,7 +83,11 @@ passport.use(new TwitterStrategy({
         }
         return cb(null, newUser);
       } else {
-        col.updateOne( { 'user': profile.emails[0].value } $set { 'twitter_id' : profile.id } );
+        col.updateOne(
+          { 'user': profile.emails[0].value },
+          { 
+            $set { 'twitter_id' : profile.id } 
+          });
         return cb(null, user);
       }
     });
