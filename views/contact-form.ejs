@@ -1,40 +1,4 @@
-<div class="panel panel-primary panel-transparent">
-  <div class="panel-heading">
-    <h2>Create/Update Contact</h2>
-  </div>
-  
-  <div class="panel-body">
     <div class="row">
-      <div class="col-md-8">
-        <p>
-          <label>First Name (required)</label> 
-          <input id="firstName" class="form-control" type="text" ng-model="contact.firstName" required> 
-        </p>
-        <p>
-          <label>Last Name (required)</label> 
-          <input id="lastName" class="form-control" type="text" ng-model="contact.lastName" required> 
-        </p>
-        <p>
-          <label>Email (required)</label> 
-          <input id="email" class="form-control" type="text" ng-model="contact.email" required> 
-        </p>
-        <p>
-          <label>Phone (Mobile)</label> 
-          <input id="phoneMobile" class="form-control" type="text" ng-model="contact.phone.mobile"> 
-        </p>
-        <p>
-          <label>Phone (Work)</label> 
-          <input id="phoneWork" class="form-control" type="text" ng-model="contact.phone.work"> 
-        </p>
-        <p>
-          <label>Address</label> 
-          <input id="address" class="form-control" type="text" ng-model="contact.address"> 
-        </p>
-        <p>
-          <label>Twitter Handle</label> 
-          <input id="twitter" class="form-control" type="text" ng-model="contact.twitter"> 
-        </p>
-      </div>
       <div class="col-md-4">
         <label>Avitar</label>
         <input id="selectImage" class="form-control" type="file" accept="image/*">
@@ -46,9 +10,45 @@
           <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
         </p>
       </div>
+      <div class="col-md-8">
+        <p>
+          <label>Alias*</label> 
+          <input id="alias" class="form-control" type="text" ng-model="contact.alias" required> 
+        </p>
+        <p>
+          <label>First Name*</label> 
+          <input id="firstName" class="form-control" type="text" ng-model="contact.name.first" required> 
+        </p>
+        <p>
+          <label>Middle Initial(s)</label> 
+          <input id="middleInitials" class="form-control" type="text" ng-model="contact.name.middle" > 
+        </p>
+        <p>
+          <label>Last Name*</label> 
+          <input id="lastName" class="form-control" type="text" ng-model="contact.name.last"> 
+        </p>
+        <p>
+          <label>Email Address</label> 
+          <input id="email" class="form-control" type="text" ng-model="contact.email"> 
+        </p>
+        <p>
+          <label>Species</label> 
+          <input id="species" class="form-control" type="text" ng-model="contact.species"> 
+        </p>
+        <p>
+          <label>Team Affiliation</label> 
+          <input id="teamAffiliation" class="form-control" type="text" ng-model="contact.affiliation"> 
+        </p>
+        <p>
+          <label>Abilities</label> 
+          <input id="Abilities" class="form-control" type="text" ng-model="contact.abilities"> 
+        </p>
+        <p>
+          <label>Twitter Handle</label> 
+          <input id="twitter" class="form-control" type="text" ng-model="contact.twitter"> 
+        </p>
+      </div>
     </div>
-  </div>
-</div>
 <script>
 function readImage() {
     if ( this.files && this.files[0] ) {

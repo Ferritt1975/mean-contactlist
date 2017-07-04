@@ -1,6 +1,6 @@
 <div class="panel panel-primary panel-transparent">
   <div class="panel-heading">
-    <h2>Contact: {{ contact.firstName }} {{ contact.lastName }}</h2>
+    <h2>Contact: {{ contact.alias }}</h2>
   </div>
 
   <div class="panel-body">
@@ -19,12 +19,16 @@
         <img src="{{ contact.base64img }}" class="img-responsive img-rounded">
       </div>
       <div class="col-md-6">
-        <div> 
-          <p class="lead" ng-if="contact.email">email: <a ng-href="mailto:{{ contact.email }}" target="_blank">{{ contact.email }}</a></p>
-          <p class="lead" ng-if="contact.phone.mobile">phone (m): {{ contact.phone.mobile }} </p>
-          <p class="lead" ng-if="contact.phone.work">phone (w): {{ contact.phone.work }} </p>
-          <p class="lead" ng-if="contact.address"> address: {{ contact.address }} </p>
-          <p class="lead" ng-if="contact.twitter"> twitter: <a ng-href="https://twitter.com/{{ contact.twitter }}" target="_blank">@{{ contact.twitter }}</a></p>
+        <div>
+          <p class="lead" ng-if="contact.name.salutation">First name: {{ contact.name.salutation }} </p>
+          <p class="lead" ng-if="contact.name.first">First name: {{ contact.name.first }} </p>
+          <p class="lead" ng-if="contact.name.middle">Middle Initial: {{ contact.name.middle }} </p>
+          <p class="lead" ng-if="contact.name.last">Last Name: {{ contact.name.last }} </p>
+          <p class="lead" ng-if="contact.email">E-mail: <a ng-href="mailto:{{ contact.email }}" target="_blank">{{ contact.email }}</a></p>
+          <p class="lead" ng-if="contact.species">Species: {{ contact.species }} </p>
+          <p class="lead" ng-if="contact.affiliation">Team Affiliation: {{ contact.affiliation }} </p>
+          <p class="lead" ng-if="contact.abilities">Abilities: {{ contact.abilities }} </p>
+          <p class="lead" ng-if="contact.twitter">twitter: <a ng-href="https://twitter.com/{{ contact.twitter }}" target="_blank">@{{ contact.twitter }}</a></p>
         </div>
       </div>
       <div ng-include="contactFormUrl">
