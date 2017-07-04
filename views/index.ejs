@@ -11,7 +11,7 @@
       <ul class="nav navbar-nav navbar-right">
       <% if (user) { %>
         <li><p class="navbar-text">Welcome, 
-        <% switch (source.loggedInWith) {
+        <% switch (session.loggedInWith) {
           case ' facebook user ': %>
           Facebook
         <% break;
