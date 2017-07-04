@@ -8,11 +8,11 @@
       <div class="col-md-8">
         <p>
           <label>First Name (required)</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.firstName" required> 
+          <input id="firstName" class="form-control" type="text" ng-model="contact.firstName" required> 
         </p>
         <p>
           <label>Last Name (required)</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.lastName" required> 
+          <input id="lastName" class="form-control" type="text" ng-model="contact.lastName" required> 
         </p>
         <p>
           <label>Email (required)</label> 
@@ -20,25 +20,26 @@
         </p>
         <p>
           <label>Phone (Mobile)</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.phone.mobile"> 
+          <input id="phoneMobile" class="form-control" type="text" ng-model="contact.phone.mobile"> 
         </p>
         <p>
           <label>Phone (Work)</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.phone.work"> 
+          <input id="phoneWork" class="form-control" type="text" ng-model="contact.phone.work"> 
         </p>
         <p>
           <label>Address</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.address"> 
+          <input id="address" class="form-control" type="text" ng-model="contact.address"> 
         </p>
         <p>
           <label>Twitter Handle</label> 
-          <input id="name" class="form-control" type="text" ng-model="contact.twitter"> 
+          <input id="twitter" class="form-control" type="text" ng-model="contact.twitter"> 
         </p>
       </div>
       <div class="col-md-4">
-        <input id="name" class="form-control" type="file" accept="image/*" ng-change="imageHandler" ng-model="contact.base64img">
+        <input id="selectImage" class="form-control" type="file" accept="image/*">
         <br>
         <img id="img" src="//placehold.it/1x1/" class="img-responsive img-rounded"/>
+        <input id="image" class="form-control" type="text" ng-change="imageHandler()" ng-model="contact.base64img">
         <p>
           <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
           <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
@@ -48,5 +49,18 @@
   </div>
 </div>
 <script>
+function readImage() {
+    if ( this.files && this.files[0] ) {
+        var FR= new FileReader();
+        FR.onload = function(e) {
+            document.getElementById("img").src = e.target.result;
+            $(function() {
+                $('#image').val(e.target.result).trigger('input');
+            });
+        };       
+        FR.readAsDataURL( this.files[0] );
+    }
+}
 
+document.getElementById("asd").addEventListener("change", readImage, false);
 </script>
