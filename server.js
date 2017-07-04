@@ -20,13 +20,12 @@ passport.use(new FacebookStrategy({
     console.log(JSON.stringify(profile));
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
-      'facebook_id': JSON.stringify(profile.id).replace(/\"/g, "")
+      'email': profile.emails[0].value
     }, function(err, user) {
       if (err) {
         return cb(err);
       };
       if (!user) {
-        //var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
         var newUser = {
           firstname: profile.name.givenName,
           lastname: profile.name.familyName,
@@ -46,6 +45,11 @@ passport.use(new FacebookStrategy({
         }
         return cb(null, newUser);
       } else {
+        col.updateOne(
+          { 'email': profile.emails[0].value },
+          { 
+            $set: { 'facebook_id' : profile.id } 
+          });
         return cb(null, user);
       }
     });
