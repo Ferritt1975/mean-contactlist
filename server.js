@@ -26,9 +26,10 @@ passport.use(new FacebookStrategy({
       if (!user) {
         var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
         var newUser = {
-          firstname: displayName[0],
-          lastname: displayName[1],
-          facebook_id: JSON.stringify(profile.id).replace(/\"/g, "")
+          firstname: profile.name.givenName,
+          lastname: profile.name.familyName,
+          facebook_id: JSON.stringify(profile.id).replace(/\"/g, ""),
+          email: profile.emails[0].value
         };
         if (err) {
           handleError(res, err.message, "Failed to add new user.");
