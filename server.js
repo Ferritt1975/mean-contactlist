@@ -13,7 +13,8 @@ var USERS_COLLECTION = "users";
 passport.use(new FacebookStrategy({
     clientID: '145826452655768',
     clientSecret: '388560ee4c8d52694ad674617a97e6dd',
-    callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/facebook/return'
+    callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/facebook/return',
+    profileFields: ['id', 'displayName', 'link', 'about_me', 'photos', 'emails']
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(JSON.stringify(profile));
