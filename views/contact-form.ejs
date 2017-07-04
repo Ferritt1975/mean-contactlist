@@ -35,11 +35,11 @@
           <input id="name" class="form-control" type="text" ng-model="contact.twitter"> 
         </p>
       </div>
-      <div class="col-md-4">
+      <div id="image" class="col-md-4">
         <input type='file' id="asd" accept="image/*"/>
         <br>
         <img id="img" src="//placehold.it/1x1/" class="img-responsive img-rounded"/>
-        <input id="base" class="form-control" type="text" ng-model="contact.base64img">
+        <input id="name" class="form-control base" type="text" ng-model="contact.base64img">
         <p>
           <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
           <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
@@ -56,7 +56,7 @@ function readImage() {
         var FR= new FileReader();
         FR.onload = function(e) {
              el("img").src = e.target.result;
-             el("base").value = e.target.result;
+             document.getElementByClassName("base")[0].value = e.target.result;
         };       
         FR.readAsDataURL( this.files[0] );
     }
