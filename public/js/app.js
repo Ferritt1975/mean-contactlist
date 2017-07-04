@@ -38,7 +38,6 @@ angular.module("contactsApp", ['ngRoute'])
                 });
         }
         this.createContact = function(contact) {
-            alert(JSON.stringify(contact));
             return $http.post("/contacts", contact).
                 then(function(response) {
                     return response;
@@ -56,6 +55,7 @@ angular.module("contactsApp", ['ngRoute'])
                 });
         }
         this.editContact = function(contact) {
+            alert(JSON.stringify(contact));
             var url = "/contacts/" + contact._id;
             console.log(contact._id);
             return $http.put(url, contact).
