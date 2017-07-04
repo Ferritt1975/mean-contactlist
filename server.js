@@ -49,9 +49,10 @@ passport.use(new FacebookStrategy({
   }));
 
 passport.use(new TwitterStrategy({
-    consumerKey: 'Ft0IzZcoIoxWTwXpVRGgHS3L3',
-    consumerSecret: 'en3dxsyE6zfg6ibd7CaKpeW5rXMwH01cqvvciWh7IH5CU9RGoa',
-    callbackURL: "https://sheltered-gorge-33033.herokuapp.com/login/twitter/return"
+    consumerKey: 'DBGp4rY5y10hoQlKm5aZekLDO',
+    consumerSecret: '3BE9glMXWfybwSdpsIPgPco0ePMNKT7se0XpM4DGZYUXDnANMS',
+    callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/twitter/return',
+    userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
   },
   function(token, tokenSecret, profile, cb) {
     var col = db.collection(USERS_COLLECTION);
