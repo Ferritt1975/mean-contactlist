@@ -16,6 +16,7 @@ passport.use(new FacebookStrategy({
     callbackURL: 'https://sheltered-gorge-33033.herokuapp.com/login/facebook/return'
   },
   function(accessToken, refreshToken, profile, cb) {
+    console.log(JSON.stringify(profile));
     var col = db.collection(USERS_COLLECTION);
     col.findOne({
       'facebook_id': JSON.stringify(profile.id).replace(/\"/g, "")
