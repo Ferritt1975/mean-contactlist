@@ -339,7 +339,7 @@ app.get("/contacts",
 app.post("/contacts",
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
-    console.log(JSON.stringify(req.body));
+    console.log("BODY: " + JSON.stringify(req.body));
     var newContact = req.body;
     newContact.createDate = new Date();
     newContact.owner = req.user._id;
