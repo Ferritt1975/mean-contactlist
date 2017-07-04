@@ -23,7 +23,6 @@ passport.use(new FacebookStrategy({
       if (err) {
         return cb(err);
       };
-      console.log("user: " + JSON.stringify(user));
       if (!user) {
         var displayName = JSON.stringify(profile.displayName).replace(/\"/g, "").split(" ");
         var newUser = {
@@ -39,11 +38,12 @@ passport.use(new FacebookStrategy({
               handleError(res, err.message, "Failed to add new user.");
               res.redirect('/');
             };
-            console.log("user: " + JSON.stringify(newUser));
+            console.log("newUser: " + JSON.stringify(newUser));
             return cb(null, newUser);
           });
         }
       };
+      console.log("user: " + JSON.stringify(user));
       return cb(null, user);
     });
   }));
@@ -162,10 +162,10 @@ app.get('/login/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
   }),
-  function(req, res) {
+/*  function(req, res) {
     res.redirect('/');
   });
-
+*/
 app.get('/login/twitter',
   passport.authenticate('twitter'));
 
