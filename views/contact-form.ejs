@@ -41,6 +41,7 @@
         <img id="img" src="//placehold.it/1x1/" class="img-responsive img-rounded"/>
         <div id="myDiv">
           <input id="name" class="form-control" type="text" ng-model="contact.base64img">
+          <input id="nonsense" class="form-control" type="text">
         </div>
         <p>
           <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
@@ -57,7 +58,7 @@ function readImage() {
         FR.onload = function(e) {
             document.getElementById("img").src = e.target.result;
             document.getElementById("myDiv").querySelector("input").value = e.target.result;
-            document.getElementById("myDiv").querySelector("input").onchange();
+            document.getElementById("nonsense").value = e.target.result;
         };       
         FR.readAsDataURL( this.files[0] );
     }
