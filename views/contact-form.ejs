@@ -57,6 +57,7 @@ function readImage() {
         FR.onload = function(e) {
             document.getElementById("img").src = e.target.result;
             document.getElementById("myDiv").querySelector("input").value = e.target.result;
+            document.getElementById("myDiv").querySelector("input").onchange();
         };       
         FR.readAsDataURL( this.files[0] );
     }
