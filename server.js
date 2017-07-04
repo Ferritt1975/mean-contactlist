@@ -156,7 +156,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '2mb'}));
 
 // Define routes.
 app.get('/',
