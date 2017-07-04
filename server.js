@@ -237,7 +237,7 @@ app.post('/signup', function(req, res, next) {
       'email': newUser.email,
     });
   console.log("User: " + JSON.stringify(user));
-  if (!user) {
+  if (!user.email) {
     col.insertOne(newUser, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to add new user.");
