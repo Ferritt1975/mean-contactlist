@@ -38,6 +38,7 @@ passport.use(new FacebookStrategy({
             if (err) {
               handleError(res, err.message, "Failed to add new user.");
               res.redirect('/');
+              user = newUser;
             }
           });
         }
