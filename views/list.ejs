@@ -1,13 +1,13 @@
 <div class="panel panel-primary panel-transparent">
   <!-- Default panel contents -->
-  <div class="panel-heading"><a class="btn btn-default" href="#/new/contact">New</a></div>
+  <div class="panel-heading"><a class="btn btn-success" href="#/new/contact"><span class="glyphicon glyphicon-plus"</span> New</a></div>
   <div class="panel-body">
     <p>...</p>
     <table class="table table-hover">
       <tbody>
-        <tr ng-repeat="contact in contacts | orderBy:'lastName'" style="cursor:pointer">
+        <tr ng-repeat="contact in contacts | orderBy:'alias'" style="cursor:pointer">
           <td>
-            <a ng-href="#/contact/{{contact._id}}">{{ contact.firstName }} {{ contact.lastName }}</a>
+            <p class="lead"<b><a ng-href="#/contact/{{contact._id}}">{{ contact.alias }} </a></b> - {{ contact.name.first }} {{ contact.name.middle }} {{ contact.name.last }}
           </td>
         </tr>
       </tbody>
