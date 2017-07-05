@@ -5,9 +5,9 @@
         <br>
         <img id="img" src="{{ contact.base64img }}" class="img-responsive img-rounded"/>
         <input id="image" class="form-control" type="text" ng-model="contact.base64img" style="display: none;">
-        <p>
-          <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
-          <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+        <p class="text-center">
+          <button style="margin-top:20px" class="btn btn-default" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+          <button style="margin-top:20px" class="btn btn-success" ng-click="saveContact(contact)"><span class="glyphicon glyphicon-ok"></span> Save</button>
         </p>
       </div>
       <div class="col-md-8">

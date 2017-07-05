@@ -1,15 +1,18 @@
 <div class="panel panel-primary panel-transparent">
   <div class="panel-heading">
-    <h2>Contact: {{ contact.alias }}</h2>
-  </div>
-
-  <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
-        <a href="#/"><button style="margin-top:20px" class="btn btn-success" href="#/"><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
-        <button style="margin-top:20px" class="btn btn-success" ng-click="toggleEdit()"><span class="glyphicon glyphicon-plus"></span> Edit</button>
-        <a href="#/"><button style="margin-top:20px" class="btn btn-danger" ng-click="deleteContact(contact._id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></a>
-        <p></p>
+        <h2>Contact: {{ contact.alias }}</h2>
+      </div>
+      <div class="col-md-6">
+        <p class="text-right" ng-hide="editMode">
+          <a href="#/"><button style="margin-top:20px" class="btn btn-success" href="#/"><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
+          <button style="margin-top:20px" class="btn btn-success" ng-click="toggleEdit()"><span class="glyphicon glyphicon-plus"></span> Edit</button>
+          <a href="#/"><button style="margin-top:20px" class="btn btn-danger" ng-click="deleteContact(contact._id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></a>
+        </p>
+      </div>
+
+  <div class="panel-body">
       </div>
       <div class="col-md-6">
       </div>
