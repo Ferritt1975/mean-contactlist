@@ -336,8 +336,8 @@ app.post("/contacts",
     newContact.createDate = new Date();
     newContact.owner = req.user._id;
 
-    if (!(req.body.firstName || req.body.lastName)) {
-      handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+    if (!(req.body.alias || req.name.first || req.name.last)) {
+      handleError(res, "Alias, first name, and last name are required fields.", "Must provide a first or last name.", 400);
     }
 
     db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
